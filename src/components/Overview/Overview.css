@@ -1,0 +1,14 @@
+.overview {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.overviewCard {
+    align-items: center !important;
+}
+
+.statusBars>* {
+    width: 550px;
+    --bs-list-group-bg: var(--bs-dark) !important;
+    color: white !important;
+}

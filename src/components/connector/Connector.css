@@ -1,0 +1,16 @@
+#connectorForm {
+  max-width: 600px;
+  /* border: 1px #ccc solid; */
+  border-radius: 25px;
+  padding: 10px;
+  margin: 20vh auto;
+  text-align: center;
+}
+
+.connectButton {
+  margin-top: 10px;
+}
+
+.connectorSpinner {
+  margin-top: 20vh;
+}

@@ -17,13 +17,14 @@ UI that allow you to check the state and status of your clickhouse cluster. The 
 - Running and monitoring migrations/mutations 🚧
 - Adding and removing nodes from cluster (? possibly need configuration access to nodes) 🚧
 - Creating and evaluating alerts which exposed like prometheus metrics 🚧
+- Move data between clickhouse servers 🚧
 
 ---
 
 ## API Methods:
 - POST /api/v1/connect - connects to clickhouse ✅
 - GET /api/v1/ping - check that connection is alive ✅
-- GET /api/v1/get_info - get default server - databases, tables 🚧
+- GET /api/v1/get_info - get default server - settings, databases, tables 🚧
 - GET /api/v1/get/:database_name: 🚧
 - GET /api/v1/get/:database_name:/:table_name: 🚧
 - GET /api/v1/queries 🚧

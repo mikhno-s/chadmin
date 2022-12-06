@@ -9,6 +9,6 @@ func main() {
 	fmt.Println("Hello")
 	cha := chadmin.New()
 
-	cha.Server.Listen(":4000")
+	cha.HTTPServer.Listen(":4000")
 
 }

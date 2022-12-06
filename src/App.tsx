@@ -1,20 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Navbar, Container, Nav, Row, Stack } from 'react-bootstrap';
 import './App.css';
-import Configurator from './components/configurator/Configurator'
+import Connector from './components/connector/Connector'
+import TopMenu from './components/topMenu/TopMenu'
+import Wrapper from './components/Wrapper/Wrapper'
 
 function App() {
-  const [URL, setChURL] = useState("")
+  const [CHDisconnected, setCHDisconnected] = useState<Boolean>(false)
+  const [showLoader, setShowLoader] = useState<Boolean>(true)
 
-  // useEffect(() => {
-  //   console.log(URL)
-  // }, [URL])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        < Configurator chURL={URL} setChURL={setChURL} />
-      </header>
-    </div>
+    <div id="App">
+      <TopMenu setCHDisconnected={setCHDisconnected} />
+      <Connector
+        CHDisconnected={CHDisconnected}
+        setCHDisconnected={setCHDisconnected}
+        showLoader={showLoader}
+        setShowLoader={setShowLoader}
+      />
+      {!CHDisconnected && !showLoader && <Wrapper />}
+    </div >
   );
 }
 

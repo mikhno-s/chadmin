@@ -64,6 +64,25 @@ func (cha *CHAdmin) GetSettings(c *fiber.Ctx) error {
 	})
 }
 
+func (cha *CHAdmin) Query(c *fiber.Ctx) error {
+
+	r := new(QueryRequestBody)
+	err := c.BodyParser(r)
+	if err != nil {
+		return ResponseError(400, "param query is empty", c)
+	}
+
+	result, err := cha.chQuery(r.Query)
+	if err != nil {
+		return ResponseError(500, err.Error(), c)
+	}
+
+	return c.JSON(fiber.Map{
+		"status": "ok",
+		"result": result,
+	})
+}
+
 // Logout clears user's session info
 func (cha *CHAdmin) Disconnect(c *fiber.Ctx) error {
 

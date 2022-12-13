@@ -55,7 +55,6 @@ function Connector(props: any) {
   // check connection
   useEffect(() => {
     ping()
-    setURL('tcp://localhost:9002')
   }, [props.CHDisconnected, ping])
 
 

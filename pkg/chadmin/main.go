@@ -39,8 +39,9 @@ func New() *CHAdmin {
 
 	v1.Get("/ping", cha.Ping)
 	v1.Get("/disconnect", cha.Disconnect)
-	v1.Post("/connect", cha.Connect)
 	v1.Get("/settings", cha.GetSettings)
+	v1.Post("/connect", cha.Connect)
+	v1.Post("/query", cha.Query)
 
 	return cha
 }

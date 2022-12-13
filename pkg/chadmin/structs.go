@@ -19,3 +19,14 @@ type CHAdmin struct {
 type ConnectRequestBody struct {
 	URL string `json:"url" form:"url"`
 }
+
+type QueryRequestBody struct {
+	Query string `json:"query" form:"query"`
+}
+
+// Result of the query
+type QueryResult struct {
+	ColumnsTypes []string      `json:"column_types"`
+	ColumnsNames []string      `json:"column_names"`
+	Rows         []interface{} `json:"rows"`
+}

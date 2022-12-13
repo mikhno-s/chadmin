@@ -45,12 +45,12 @@ function Settings(props: any) {
                         {settingsList && settingsList.map((val, key) => {
                             return (
                                 <tr key={key}>
-                                    <td>{val.name}</td>
+                                    <td style={{ maxWidth: "24vw", overflow: "scroll" }}>{val.name}</td>
                                     <td>{val.value}</td>
                                     <td>{val.changed}</td>
                                     <td><p>{val.description}</p></td>
                                     <td>{val.readonly}</td>
-                                    <td>{val.type}</td>
+                                    <td style={{ maxWidth: "10vw", overflow: "scroll" }}>{val.type}</td>
                                 </tr>
                             )
                         })}

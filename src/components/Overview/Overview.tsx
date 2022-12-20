@@ -3,7 +3,6 @@ import { ReactElement, useState } from 'react';
 import Menu from '../menu/Menu'
 import { Card, Container, ListGroup, ListGroupItem, ProgressBar } from 'react-bootstrap';
 import './Overview.css'
-import { text } from 'stream/consumers';
 
 const darkCardBig = (text: string, header: string): ReactElement => {
     return (

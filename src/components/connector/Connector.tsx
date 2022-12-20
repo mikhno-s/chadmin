@@ -108,7 +108,7 @@ function Connector(props: any) {
             value={URL}
             onChange={(e) => {
               setURL(e.target.value);
-              props.setChURL(e.target.value);
+              // props.setChURL(e.target.value);
             }}
             required
             id="url_input"

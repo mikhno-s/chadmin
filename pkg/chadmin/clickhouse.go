@@ -8,21 +8,21 @@ import (
 	"github.com/ClickHouse/clickhouse-go/v2"
 )
 
-func (cha *CHAdmin) chGetSettings() ([]*CHSettings, error) {
+func (cha *CHAdmin) chGetSettings() ([]*CHSetting, error) {
 	err := cha.chCheckPing()
 	if err != nil {
 		return nil, err
 	}
 
-	res, err := cha.CHConn.Query(context.TODO(), "SELECT * FROM system.settings")
+	res, err := cha.CHConn.Query(context.TODO(), settingsQuery)
 	if err != nil {
 		return nil, err
 	}
 
-	settings := make([]*CHSettings, 0)
+	settings := make([]*CHSetting, 0)
 
 	for res.Next() {
-		setting := CHSettings{}
+		setting := CHSetting{}
 		err = res.ScanStruct(&setting)
 		if err != nil {
 			return nil, err
@@ -31,6 +31,30 @@ func (cha *CHAdmin) chGetSettings() ([]*CHSettings, error) {
 	}
 
 	return settings, err
+}
+
+func (cha *CHAdmin) chGetQueryLog(limit int) ([]*CHLog, error) {
+
+	if limit == 0 {
+		limit = 100
+	}
+
+	res, err := cha.CHConn.Query(context.TODO(), logsQuery, limit)
+	if err != nil {
+		return nil, err
+	}
+
+	logs := make([]*CHLog, 0)
+
+	for res.Next() {
+		log := CHLog{}
+		err = res.ScanStruct(&log)
+		if err != nil {
+			return nil, err
+		}
+		logs = append(logs, &log)
+	}
+	return logs, err
 }
 
 func (cha *CHAdmin) chQuery(query string) (*QueryResult, error) {
@@ -102,5 +126,7 @@ func (cha *CHAdmin) chConnect() error {
 
 func (cha *CHAdmin) chClose() error {
 	// Close connect
-	return cha.CHConn.Close()
+	err := cha.CHConn.Close()
+	cha.CHConn = nil
+	return err
 }

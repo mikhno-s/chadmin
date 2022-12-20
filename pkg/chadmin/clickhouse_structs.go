@@ -130,7 +130,7 @@ type CHDatabase struct {
 	Tables       []*CHTable
 }
 
-type CHSettings struct {
+type CHSetting struct {
 	Name        string `ch:"name" json:"name"`
 	Value       string `ch:"value" json:"value"`
 	Changed     uint8  `ch:"changed" json:"changed"`
@@ -140,9 +140,23 @@ type CHSettings struct {
 	Readonly    uint8  `ch:"readonly" json:"readonly"`
 	Type        string `ch:"type" json:"type"`
 }
+type CHLog struct {
+	Status          string    `ch:"status" json:"status"`
+	EventTime       time.Time `ch:"event_time" json:"event_time"`
+	QueryID         string    `ch:"query_id" json:"query_id"`
+	QueryDurationMs uint64    `ch:"query_duration_ms" json:"query_duration_ms"`
+	Query           string    `ch:"query" json:"query"`
+	ReadRows        uint64    `ch:"read_rows" json:"read_rows"`
+	ReadBytes       uint64    `ch:"read_bytes" json:"read_bytes"`
+	ResultRows      uint64    `ch:"result_rows" json:"result_rows"`
+	ResultBytes     uint64    `ch:"result_bytes" json:"result_bytes"`
+	ExceptionCode   int32     `ch:"exception_code" json:"exception_code"`
+	Exception       string    `ch:"exception" json:"exception"`
+	StackTrace      string    `ch:"stack_trace" json:"stack_trace"`
+}
 
 type CHServer struct {
 	Name      string
-	Settings  map[string]CHSettings
+	Settings  map[string]CHSetting
 	Databases map[string]CHDatabase
 }

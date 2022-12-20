@@ -1,6 +1,8 @@
 package chadmin
 
 import (
+	"strconv"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -61,6 +63,26 @@ func (cha *CHAdmin) GetSettings(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
 		"status":   "ok",
 		"settings": settings,
+	})
+}
+
+func (cha *CHAdmin) GetLogs(c *fiber.Ctx) error {
+
+	limitVal := c.FormValue("limit", "100")
+
+	limit, err := strconv.Atoi(limitVal)
+	if err != nil {
+		return ResponseError(500, err.Error(), c)
+	}
+
+	logs, err := cha.chGetQueryLog(limit)
+	if err != nil {
+		return ResponseError(500, err.Error(), c)
+	}
+
+	return c.JSON(fiber.Map{
+		"status": "ok",
+		"result": logs,
 	})
 }
 

@@ -1,7 +1,7 @@
 FROM golang:1.19 as backend
 WORKDIR /build
 
-ADD go.mod go.sum .
+ADD go.mod go.sum ./
 RUN go mod download
 
 ADD main.go .

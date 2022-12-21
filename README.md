@@ -1,8 +1,29 @@
-# CHAdmin
+# CHADMIN
+#### Video Demo:  <URL HERE>
+#### Description:
+UI that allows you to check the state and status of your clickhouse cluster.
 
-## UI for your clickhouse cluster
+App constists of two parts:
+- Backend is a golang application.
+- Fronend is a typescript + react.
 
-UI that allow you to check the state and status of your clickhouse cluster. The main feature is that you can monitoring and check configuration paramteres cluster-wide.
+You need to have an access to clickhouse tcp endpoint from the backend. Connection string must valid DSN uri.
+![connect](./docs/1.png)
+
+You can check the default metrics, like errors, amount of nodes in cluster or readonly replicas. 
+![connect](./docs/2.png)
+
+You can find useful to check the table schemas (create queries) and other information, like amount of parts, rows, size in byte. 
+![connect](./docs/3.png)
+
+You can see the query logs, check them for errors or just find the stats of the selected query. Filter works with regexp.
+![connect](./docs/4.png)
+
+Checkout the changed and default settings values
+![connect](./docs/5.png)
+
+You can select any data and run any queries that you want and get pretty enough output.
+![connect](./docs/6.png)
 
 ---
 
@@ -23,10 +44,3 @@ UI that allow you to check the state and status of your clickhouse cluster. The 
 - Adding and removing nodes from cluster (? possibly need configuration access to nodes) 🚧
 - Creating and evaluating alerts which exposed like prometheus metrics 🚧
 - Move data between clickhouse servers 🚧
-
----
-
-## API Methods:
-- POST /api/v1/connect - connects to clickhouse ✅
-- GET /api/v1/ping - check that connection is alive ✅
-- GET /api/v1/get_info - get default server - settings, databases, tables 🚧

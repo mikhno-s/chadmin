@@ -60,7 +60,7 @@ function Disks() {
                                     {disk.path}:<ProgressBar
                                         variant='info'
                                         label={readableFileSize(disk.total_space - disk.free_space) + '/' + readableFileSize(disk.total_space)}
-                                        now={disk.free_space / disk.total_space * 100}
+                                        now={(disk.total_space - disk.free_space) / disk.total_space * 100}
                                     />
 
                                 </ListGroupItem>

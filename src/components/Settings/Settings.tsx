@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from 'react';
-import Menu from '../menu/Menu'
 import { Table, Container } from 'react-bootstrap';
 
 interface setting {

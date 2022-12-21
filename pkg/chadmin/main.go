@@ -40,7 +40,10 @@ func New() *CHAdmin {
 	v1.Get("/ping", cha.Ping)
 	v1.Get("/disconnect", cha.Disconnect)
 	v1.Get("/settings", cha.GetSettings)
+	v1.Get("/overview", cha.GetOverview)
 	v1.Get("/logs", cha.GetLogs)
+	v1.Get("/disks", cha.GetDisks)
+	v1.Get("/tables", cha.GetTables)
 	v1.Post("/connect", cha.Connect)
 	v1.Post("/query", cha.Query)
 

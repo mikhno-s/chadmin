@@ -2,11 +2,14 @@
 import { useEffect, useState } from 'react';
 import { Row, Button, ButtonGroup, Col, Container } from 'react-bootstrap';
 import './Menu.css'
+import { getOverview } from '../../Api/Api'
+
 function Menu(props: any) {
-    const [currentNodeStatus, setCurrentNodeStatus] = useState("🟢")
-    const [currentNode, setCurrentNode] = useState<any>()
-    const [currentNodeVer, setCurrentNodeVer] = useState("v21.0.4")
-    const [nodeName, setNodeName] = useState("default node")
+    const [overview, setOverview] = useState<any>()
+
+    useEffect(() => {
+        getOverview(setOverview)
+    }, [])
 
     const variant = (id: string) => {
         if (props.selectedPage === id) {
@@ -20,7 +23,7 @@ function Menu(props: any) {
     }
     const routes: any = [
         <Button key={'overview'} id='overview' onClick={setActivePage} variant={variant('overview')}>Overview</Button >,
-        <Button key={'partitions'} id='partitions' onClick={setActivePage} variant={variant('partitions')}>Partitions</Button>,
+        <Button key={'schema'} id='schema' onClick={setActivePage} variant={variant('schema')}>Schema</Button>,
         <Button key={'logs'} id='logs' onClick={setActivePage} variant={variant('logs')}>Logs</Button>,
         <Button key={'settings'} id='settings' onClick={setActivePage} variant={variant('settings')}>⚙️ Settings</Button>,
         <Button key={'query'} id='query' onClick={setActivePage} variant={variant('query')}>🔍 Query</Button>,
@@ -35,7 +38,7 @@ function Menu(props: any) {
             <Row>
                 <Col>
                     <h3 className='mx-4 my-3'>
-                        {currentNodeStatus} Cluster_name <span className='fs-4'>{nodeName}</span>  <span className='fs-6 fw-lighter'>{currentNodeVer}</span>
+                        <span className='fs-4'>{overview?.version.DisplayName}</span>  <span className='fs-6 fw-lighter'>v{overview?.version.Version.Major}.{overview?.version.Version.Minor}.{overview?.version.Version.Patch}</span>
                     </h3>
                 </Col>
                 <Col>

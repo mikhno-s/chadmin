@@ -86,6 +86,45 @@ func (cha *CHAdmin) GetLogs(c *fiber.Ctx) error {
 	})
 }
 
+func (cha *CHAdmin) GetOverview(c *fiber.Ctx) error {
+
+	overview, err := cha.chGetOverview()
+	if err != nil {
+		return ResponseError(500, err.Error(), c)
+	}
+
+	return c.JSON(fiber.Map{
+		"status": "ok",
+		"result": overview,
+	})
+}
+
+func (cha *CHAdmin) GetDisks(c *fiber.Ctx) error {
+
+	disks, err := cha.chGetDisks()
+	if err != nil {
+		return ResponseError(500, err.Error(), c)
+	}
+
+	return c.JSON(fiber.Map{
+		"status": "ok",
+		"result": disks,
+	})
+}
+
+func (cha *CHAdmin) GetTables(c *fiber.Ctx) error {
+
+	tables, err := cha.chGetTables()
+	if err != nil {
+		return ResponseError(500, err.Error(), c)
+	}
+
+	return c.JSON(fiber.Map{
+		"status": "ok",
+		"result": tables,
+	})
+}
+
 func (cha *CHAdmin) Query(c *fiber.Ctx) error {
 
 	r := new(QueryRequestBody)

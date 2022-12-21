@@ -57,6 +57,45 @@ func (cha *CHAdmin) chGetQueryLog(limit int) ([]*CHLog, error) {
 	return logs, err
 }
 
+func (cha *CHAdmin) chGetTables() ([]CHTable, error) {
+	var result []CHTable
+	err := cha.CHConn.Select(context.Background(), &result, tablesQuery)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
+func (cha *CHAdmin) chGetOverview() (*CHOverview, error) {
+
+	var result []CHOverview
+
+	err := cha.CHConn.Select(context.Background(), &result, overviewQuery)
+
+	if err != nil {
+		return nil, err
+	}
+	result[0].ServerVersion, err = cha.CHConn.ServerVersion()
+	if err != nil {
+		return nil, err
+	}
+	return &result[0], nil
+}
+
+func (cha *CHAdmin) chGetDisks() ([]CHDisk, error) {
+
+	var result []CHDisk
+	err := cha.CHConn.Select(context.Background(), &result, disksQuery)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
 func (cha *CHAdmin) chQuery(query string) (*QueryResult, error) {
 	result := &QueryResult{}
 
@@ -68,8 +107,6 @@ func (cha *CHAdmin) chQuery(query string) (*QueryResult, error) {
 	var (
 		// Get column types
 		columnTypes = rows.ColumnTypes()
-
-		// rowValues = make([]interface{}, len(columnTypes))
 	)
 
 	for i := range columnTypes {

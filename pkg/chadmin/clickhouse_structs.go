@@ -98,12 +98,11 @@ type CHColumn struct {
 type CHTable struct {
 	Name                     string    `ch:"name" json:"name"`
 	Database                 string    `ch:"database" json:"database"`
-	CreateQuery              string    `ch:"create_query" json:"create_query"`
 	UUID                     string    `ch:"uuid" json:"uuid"`
 	Engine                   string    `ch:"engine" json:"engine"`
 	IsTemporary              uint8     `ch:"is_temporary" json:"is_temporary"`
-	DataPath                 []string  `ch:"data_path" json:"data_path"`
-	MetadataPath             []string  `ch:"metadata_path" json:"metadata_path"`
+	DataPaths                []string  `ch:"data_paths" json:"data_paths"`
+	MetadataPath             string    `ch:"metadata_path" json:"metadata_path"`
 	MetadataModificationTime time.Time `ch:"metadata_modification_time" json:"metadata_modification_time"`
 	DependenciesDatabase     []string  `ch:"dependencies_database" json:"dependencies_database"`
 	Dependencies_table       []string  `ch:"dependencies_table" json:"dependencies_table"`
@@ -127,7 +126,7 @@ type CHDatabase struct {
 	DataPath     string `ch:"data_path" json:"data_path"`
 	MetadataPath string `ch:"metadata_path" json:"metadata_path"`
 	UUID         string `ch:"uuid" json:"uuid"`
-	Tables       []*CHTable
+	Tables       map[string]*CHTable
 }
 
 type CHSetting struct {
@@ -153,6 +152,18 @@ type CHLog struct {
 	ExceptionCode   int32     `ch:"exception_code" json:"exception_code"`
 	Exception       string    `ch:"exception" json:"exception"`
 	StackTrace      string    `ch:"stack_trace" json:"stack_trace"`
+}
+
+type CHOverview struct {
+	Nodes            uint64      `ch:"nodes" json:"nodes"`
+	Clusters         uint64      `ch:"clusters" json:"clusters"`
+	Parts            uint64      `ch:"parts" json:"parts"`
+	ActiveParts      uint64      `ch:"active_parts" json:"active_parts"`
+	Errors           uint64      `ch:"errors" json:"errors"`
+	DistinctErrors   uint64      `ch:"distinct_errors" json:"distinct_errors"`
+	Replicas         uint64      `ch:"replicas" json:"replicas"`
+	ReadonlyReplicas uint64      `ch:"readonly_replicas" json:"readonly_replicas"`
+	ServerVersion    interface{} `json:"version"`
 }
 
 type CHServer struct {

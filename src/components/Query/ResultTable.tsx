@@ -24,7 +24,7 @@ function ResultTable(data: tableData | undefined) {
                   return (
                     <td key={column_name}>
                       <div className='overflow-scroll' style={{ overflowY: "scroll", maxHeight: "100px" }} >
-                        {row[column_name]}
+                        {row[column_name].toString()}
                       </div>
                     </td>
                   )

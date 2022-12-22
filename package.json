@@ -23,17 +23,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "BUILD_PATH=./dist react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "BUILD_PATH=./dist react-scripts build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "proxy": "http://localhost:4000",
+  "proxy": "http://0.0.0.0:4000",
   "browserslist": {
     "production": [
       ">0.2%",

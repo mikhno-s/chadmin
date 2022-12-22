@@ -25,6 +25,23 @@ Checkout the changed and default settings values
 You can select any data and run any queries that you want and get pretty enough output.
 ![connect](./docs/6.png)
 
+##### Build and run
+There are two options:
+- Full local build in your environment: 
+```shell
+go build
+npx yarn && npx yarn build
+./chadmin
+```
+OR 
+- Build and run using docker:
+```shell
+docker build -t chadmin -f build/Dockerfile . 
+docker run -p 4000:4000 chadmin
+```
+Now you can open `http://localhost:4000`
+
+
 ---
 
 ## Features

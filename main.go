@@ -7,6 +7,6 @@ import (
 func main() {
 	cha := chadmin.New()
 
-	cha.HTTPServer.Listen(":4000")
+	cha.HTTPServer.Listen("0.0.0.0:4000")
 
 }

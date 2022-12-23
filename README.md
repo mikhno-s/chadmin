@@ -1,5 +1,5 @@
 # CHADMIN
-#### Video Demo:  <URL HERE>
+#### Video Demo:  https://youtu.be/ixucuufoTs8
 #### Description:
 UI that allows you to check the state and status of your clickhouse cluster.
 

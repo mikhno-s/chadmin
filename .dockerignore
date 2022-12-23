@@ -5,3 +5,4 @@ chadmin
 .vscode
 .envrc
 yarn*
+./chadmin
